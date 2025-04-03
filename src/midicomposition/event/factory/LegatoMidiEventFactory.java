@@ -11,7 +11,7 @@ public class LegatoMidiEventFactory implements MidiEventFactoryAbstract {
 
 	@Override
 	public MidiEvent createNoteOff(int tick, int note) {
-		return new MidiEvent(new ShortMessage(ShortMessage.NOTE_OFF, channel, note, 0), tick);
+		return new MidiEvent(new ShortMessage(ShortMessage.NOTE_OFF, channel, note, 0), tick + 80);
 	}
 
 }
