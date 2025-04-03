@@ -1,5 +1,7 @@
 package midicomposition.strategy.instrument;
 
-public interface InstrumentStrategy {
+import javax.sound.midi.Track;
 
+public interface InstrumentStrategy {
+	public void applyInstrument(Track track, int channel);
 }
