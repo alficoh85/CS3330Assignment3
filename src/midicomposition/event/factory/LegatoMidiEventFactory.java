@@ -1,17 +1,17 @@
 package midicomposition.event.factory;
 
+import javax.sound.midi.ShortMessage;
+
 public class LegatoMidiEventFactory implements MidiEventFactoryAbstract {
 
 	@Override
 	public MidiEvent createNoteOn(int tick, int note, int velocity, int channel) throws InvalidMidiDataException {
-		// TODO Auto-generated method stub
-		return null;
+		return new MidiEvent(new ShortMessage(ShortMessage.NOTE_ON, channel, note, velocity), tick);
 	}
 
 	@Override
 	public MidiEvent createNoteOff(int tick, int note) {
-		// TODO Auto-generated method stub
-		return null;
+		return new MidiEvent(new ShortMessage(ShortMessage.NOTE_OFF, channel, note, 0), tick);
 	}
 
 }
