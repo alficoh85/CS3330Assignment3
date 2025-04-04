@@ -13,7 +13,7 @@ public class MidiCsvParser {
 			BufferedReader br = new BufferedReader(new FileReader(filepath));
 			String line = br.readLine();
             while (line != null) {
-                // TODO make new MidiEventData item with items from the line being read turned to ints
+                // TODO separate line, make new MidiEventData with items from line, add MidiEventData to List
                 line = br.readLine();
             }
             return null;
