@@ -1,8 +1,8 @@
 package midicomposition.event.factory;
 
+import javax.sound.midi.MidiEvent;
 import javax.sound.midi.ShortMessage;
 import javax.sound.midi.Track;
-
 import midicomposition.event.data.MidiEventData;
 
 public class LegatoMidiEventFactory implements MidiEventFactoryAbstract {
@@ -10,7 +10,7 @@ public class LegatoMidiEventFactory implements MidiEventFactoryAbstract {
 	@Override
 	public void createMidiEvents(MidiEventData data, Track track) throws Exception {
 		ShortMessage on = new ShortMessage();
-		on.setMessage(ShortMessage.NOTE_ON, data.getChannel(), data.getNote(), Math.min(127, data.getVelocity() + 20, 0)));
+		on.setMessage(ShortMessage.NOTE_ON, data.getChannel(), data.getNote(), Math.min(127, data.getVelocity() + 20));
 		track.add(new MidiEvent(on, data.getStartEndTick()));
 		
 		ShortMessage off = new ShortMessage();

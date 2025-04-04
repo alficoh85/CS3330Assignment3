@@ -1,6 +1,6 @@
 package midicomposition.event.factory;
 
-import midicomposition.data.MidiEventData;
+import midicomposition.event.data.*;
 import javax.sound.midi.*;
 
 public class StandardMidiEventFactory implements MidiEventFactoryAbstract {
