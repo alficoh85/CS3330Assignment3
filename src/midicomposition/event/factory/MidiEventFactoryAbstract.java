@@ -1,10 +1,8 @@
 package midicomposition.event.factory;
 
-import javax.sound.midi.MidiEvent;
-import java.io.*;
-import java.util.*;
+import midicomposition.event.data.*;
+import javax.sound.midi.Track;
 
 public interface MidiEventFactoryAbstract {
-	MidiEvent createNoteOn(int tick, int note, int velocity, int channel) throws InvalidMidiDataException;
-	MidiEvent createNoteOff(int tick, int note, int channel) throws InvalidMidiDataException;
+	void createMidiEvents(MidiEventData data, Track track) throws Exception;
 }
