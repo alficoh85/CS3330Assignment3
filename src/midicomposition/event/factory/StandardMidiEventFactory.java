@@ -3,18 +3,20 @@ package midicomposition.event.factory;
 import midicomposition.event.data.*;
 import javax.sound.midi.*;
 
-public class StandardMidiEventFactory implements MidiEventFactoryAbstract {
+public class StandardMidiEventFactory implements MidiEventFactory {
 
 	@Override
-	public void createMidiEvents(midicomposition.event.data.MidiEventData data, Track track) throws InvalidMidiDataException {
-		ShortMessage on = new ShortMessage();
-        on.setMessage(ShortMessage.NOTE_ON, data.getChannel(), data.getNote(), data.getVelocity());
-        track.add(new MidiEvent(on, data.getStartEndTick()));
-
-        ShortMessage off = new ShortMessage();
-        off.setMessage(ShortMessage.NOTE_OFF, data.getChannel(), data.getNote(), 0);
-        track.add(new MidiEvent(off, data.getStartEndTick() + 1));
+	public MidiEvent createNoteOn(int tick, int note, int velocity, int channel) throws InvalidMidiDataException {
+        ShortMessage message = new ShortMessage();
+        message.setMessage(ShortMessage.NOTE_ON, channel, note, velocity);
+        return new MidiEvent(message, tick);
+    }
+	
+    @Override
+    public MidiEvent createNoteOff(int tick, int note, int channel) throws InvalidMidiDataException {
+        ShortMessage message = new ShortMessage();
+        message.setMessage(ShortMessage.NOTE_OFF, channel, note, 0);
+        return new MidiEvent(message, tick);
 	}
-
 
 }
