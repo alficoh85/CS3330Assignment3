@@ -1,20 +1,24 @@
 package midicomposition.event.factory;
 
+import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiEvent;
 import javax.sound.midi.ShortMessage;
-import javax.sound.midi.Track;
-import midicomposition.event.data.MidiEventData;
 
-public class LegatoMidiEventFactory implements MidiEventFactoryAbstract {
+public class LegatoMidiEventFactory implements MidiEventFactory {
+	
+	private static final int LEGATO_EXTENSION = 10;
 
 	@Override
-	public void createMidiEvents(MidiEventData data, Track track) throws Exception {
-		ShortMessage on = new ShortMessage();
-		on.setMessage(ShortMessage.NOTE_ON, data.getChannel(), data.getNote(), Math.min(127, data.getVelocity() + 20));
-		track.add(new MidiEvent(on, data.getStartEndTick()));
-		
-		ShortMessage off = new ShortMessage();
-		off.setMessage(ShortMessage.NOTE_OFF, data.getChannel(), data.getNote(), 0);
-		track.add(new MidiEvent(off,data.getStartEndTick()+10));
-	}
+    public MidiEvent createNoteOn(int tick, int note, int velocity, int channel) throws InvalidMidiDataException {
+        ShortMessage message = new ShortMessage();
+        message.setMessage(ShortMessage.NOTE_ON, channel, note, velocity);
+        return new MidiEvent(message, tick);
+    }
+
+    @Override
+    public MidiEvent createNoteOff(int tick, int note, int channel) throws InvalidMidiDataException {
+        ShortMessage message = new ShortMessage();
+        message.setMessage(ShortMessage.NOTE_OFF, channel, note, 0);
+        return new MidiEvent(message, tick + LEGATO_EXTENSION);
+    }
 }
