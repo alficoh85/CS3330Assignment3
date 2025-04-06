@@ -6,12 +6,21 @@ import javax.sound.midi.ShortMessage;
 import javax.sound.midi.Track;
 
 public class TrumpetStrategy implements InstrumentStrategy {
+	/**
+	 * Instrument number for trumpet
+	 */
+	private static final int INSTRUMENT_NUMBER = 56;
 	
+	/**
+	 * Applies trumpet instrument to a track in a specified channel
+	 * @param track
+	 * @param channel
+	 */
 	@Override
 	public void applyInstrument(Track track, int channel) {
 		ShortMessage programChange = new ShortMessage();
         try {
-            programChange.setMessage(ShortMessage.PROGRAM_CHANGE, channel, 56, 0);
+            programChange.setMessage(ShortMessage.PROGRAM_CHANGE, channel, INSTRUMENT_NUMBER, 0);
             MidiEvent event = new MidiEvent(programChange, 0);
             track.add(event);
         } 
