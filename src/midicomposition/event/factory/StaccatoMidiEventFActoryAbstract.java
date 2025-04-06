@@ -1,6 +1,6 @@
 package midicomposition.event.factory;
 
-public class StaccatoMidiEventFActoryAbstract implements MidiEventFactoryAbstract{
+public class StaccatoMidiEventFactoryAbstract implements MidiEventFactoryAbstract{
 
 	@Override
 	public MidiEventFactory createFactory() {
